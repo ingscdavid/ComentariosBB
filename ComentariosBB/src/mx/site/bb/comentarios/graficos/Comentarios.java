@@ -102,18 +102,30 @@ public class Comentarios extends JFrame {
 		BufferedReader br = lector.leerArchivo();
 		JCheckBox jcb;
 		String linea;
-
+		int i = 0;
+		
 		while ((linea = br.readLine()) != null) {
 			if (!linea.equals("")) {
+				
+				
 				String[] comentarios = linea.split("::");
 				jcb = new JCheckBox();
 				jcb.setText(comentarios[0]);
 				jcb.setToolTipText(comentarios[1]);
-				Utilerias.asignarPosicion(0, numLineas, jcb, jpPanel, 2, GridBagConstraints.HORIZONTAL);
+				
+				Utilerias.asignarPosicion(i, numLineas, jcb, jpPanel,1,GridBagConstraints.HORIZONTAL);
+				i++;
 				opciones.add(jcb);
-				numLineas++;
+				if (i > 1) {
+					i = 0;
+					numLineas++;
+				}
+				
 			}
-
+			
+		}
+		if(numLineas%2!=0) {
+			numLineas++;
 		}
 
 	}
